@@ -25,7 +25,7 @@ def CalcTheta(p1, p2):
     u = CalcNormalPlane(p1, p2)
     return math.atan(numpy.dot(w, n2) / numpy.dot(u, n2))
 
-def main(argv1, argv2):
+def main(argv1, argv2, argv3):
     for filename in os.listdir(argv1):
         f = os.path.join(argv1, filename)
         if(os.path.isfile(f) and ".csv" in f):
@@ -94,9 +94,15 @@ def main(argv1, argv2):
             plt.savefig(argv2 + name_of_mound + '-phi')
             plt.close()
 
+            new_df = pd.DataFrame()
+            new_df['alphas'] = alphas_normal
+            new_df['theta'] = thetas_normal
+            new_df['phi'] = phis_normal
+            new_df.to_csv(argv3 + name_of_mound + '.csv')
+
 
 #path to directory with csv files as the first
 #path to output directory as the second
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    main(sys.argv[1], sys.argv[2], sys.argv[3])
 

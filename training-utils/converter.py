@@ -1,4 +1,3 @@
-import numpy as np
 import pylas
 import os
 import pandas as pd
